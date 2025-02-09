@@ -44,7 +44,7 @@ struct FirstView: View {
                 ForEach(tasksArray) { task in
                     Text(task.taskItem)
                 }
-                
+                // リストの並び替え時の処理を設定
                 .onMove { from, to in
                     replaceRow(from, to)
                 }

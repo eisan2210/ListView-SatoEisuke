@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-       FirstView() //FirstViewを表示
+        FirstView() //FirstViewを表示
         //SecoundView()
     }
 }
@@ -64,12 +64,12 @@ struct FirstView: View {
     }
     
     func delete(at offsets: IndexSet) {
-
-        var del = tasksArray
-
         
-            //tasksArray.remove(atOffsets: offsets)
-            
+        var del = tasksArray
+        del.remove(atOffsets: offsets)
+        
+        //tasksArray.remove(atOffsets: offsets)
+        
         if let encodedArray = try? JSONEncoder().encode(del) {
             UserDefaults.standard.setValue(encodedArray, forKey: "TasksData")
             del.remove(atOffsets: offsets)
@@ -77,14 +77,14 @@ struct FirstView: View {
     }
     
     //並び替え処理と並び替え後の保存
-        func replaceRow(_ from: IndexSet, _ to: Int) {
-            tasksArray.move(fromOffsets: from, toOffset: to) //配列内での並び替え
-            if let encodedArray = try? JSONEncoder().encode(tasksArray) {
-                
-                tasksData = encodedArray //エンコードできたらAppStorageに渡す（保存・更新）
-                
-            }
+    func replaceRow(_ from: IndexSet, _ to: Int) {
+        tasksArray.move(fromOffsets: from, toOffset: to) //配列内での並び替え
+        if let encodedArray = try? JSONEncoder().encode(tasksArray) {
+            
+            tasksData = encodedArray //エンコードできたらAppStorageに渡す（保存・更新）
+            
         }
+    }
 }
 // タスク入力用ビュー
 struct SecoundView: View {

@@ -64,15 +64,16 @@ struct FirstView: View {
     }
     
     func delete(at offsets: IndexSet) {
+
+        var del = tasksArray
+
         
+            //tasksArray.remove(atOffsets: offsets)
             
-            tasksArray.remove(atOffsets: offsets)
-            
-            if let encodedArray = try? JSONEncoder().encode(tasksArray) {
-                UserDefaults.standard.setValue(encodedArray, forKey: "TasksData")
-                tasksData = encodedArray
-            }
-        
+        if let encodedArray = try? JSONEncoder().encode(del) {
+            UserDefaults.standard.setValue(encodedArray, forKey: "TasksData")
+            del.remove(atOffsets: offsets)
+        }
     }
     
     //並び替え処理と並び替え後の保存

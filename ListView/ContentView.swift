@@ -65,7 +65,10 @@ struct FirstView: View {
     
     func delete(at offsets: IndexSet) {
         tasksArray.remove(atOffsets: offsets)
-        tasksData = try! JSONEncoder().encode(tasksArray) 
+        //tasksData = try! JSONEncoder().encode(tasksArray)
+        if let encodedArray = try? JSONEncoder().encode(tasksArray) {
+            tasksData = encodedArray
+        }
         
     }
     

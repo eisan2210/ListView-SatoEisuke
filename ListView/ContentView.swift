@@ -44,6 +44,9 @@ struct FirstView: View {
                 ForEach(tasksArray) { task in
                     Text(task.taskItem)
                 }
+                
+                .onDelete(perform: delete)
+                
                 // リストの並び替え時の処理を設定
                 .onMove { from, to in
                     replaceRow(from, to)
@@ -59,6 +62,13 @@ struct FirstView: View {
         }
         
     }
+    
+    func delete(at offsets: IndexSet) {
+        tasksArray.remove(atOffsets: offsets)
+        tasksData = try! JSONEncoder().encode(tasksArray) 
+        
+    }
+    
     //並び替え処理と並び替え後の保存
         func replaceRow(_ from: IndexSet, _ to: Int) {
             tasksArray.move(fromOffsets: from, toOffset: to) //配列内での並び替え

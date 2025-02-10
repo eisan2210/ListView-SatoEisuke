@@ -72,7 +72,7 @@ struct FirstView: View {
         
         if let encodedArray = try? JSONEncoder().encode(del) {
             UserDefaults.standard.setValue(encodedArray, forKey: "TasksData")
-            del.remove(atOffsets: offsets)
+            tasksArray = del
         }
     }
     
